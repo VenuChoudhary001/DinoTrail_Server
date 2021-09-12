@@ -13,13 +13,15 @@ const server=http.createServer(app);
 
 
 const arr=[];
-
+const PORT=process.env.PORT || 5000
 Socket(server,arr);
-
-app.get('/locations',(req,res)=>{
-  res.json(arr)
+app.get('/',(req,res)=>{
+  res.status(200).send("WELCOME TO PREHISTORIC HACKATHON")
 })
-server.listen(5000, () => {
+app.get('/locations',(req,res)=>{
+  res.status(200).json(arr)
+})
+server.listen(PORT, () => {
   console.log("SERVER IS RUNNIGN ON PORT 5000");
 });
 
