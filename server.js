@@ -7,7 +7,7 @@ const app=express();
 
 app.use(express.json({extended:true}))
 app.use(express.urlencoded({extended:true}))
-app.use(cors({ origin: "*" }));
+app.use(cors({ origin: ['http://localhost:3000'] }));
 dotenv.config();
 const server=http.createServer(app);
 
