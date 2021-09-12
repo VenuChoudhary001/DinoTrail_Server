@@ -12,6 +12,13 @@ export default (httpServer,arr)=>{
           arr.push(pos)
           socket.broadcast.emit("send-location",pos);
       })
+      socket.on('log-out',(pos)=>{
+        let newArr=arr.filter(({latitude,longitude})=>(latitude!==pos.latitude && longitude!==pos.longitude))
+        arr=[];
+        arr=newArr;
+        socket.broadcast.emit("active",arr);
+        socket.disconnect();
+      })
   })
   return {io,arr};
 }
